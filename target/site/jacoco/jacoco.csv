@@ -1,0 +1,8 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+fusal_management,com.axonactive.training.company.employee,Match,159,157,31,15,3,21,33,12,10,12
+fusal_management,com.axonactive.training.company.employee,Gender,0,34,0,0,0,4,0,1,0,1
+fusal_management,com.axonactive.training.company.employee,Employee,45,27,0,0,7,10,11,3,11,3
+fusal_management,com.axonactive.training.company.employee,Player,28,3,0,0,7,2,5,1,5,1
+fusal_management,com.axonactive.training.company.employee,Schedule,4,219,0,16,1,38,1,14,1,6
+fusal_management,com.axonactive.training.company.employee,Team,126,123,17,15,9,17,22,13,9,10
+fusal_management,com.axonactive.training.company,Company,80,0,0,0,18,0,15,0,15,0

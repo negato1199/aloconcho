@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Schedule.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">fusal_management</a> &gt; <a href="index.source.html" class="el_package">com.axonactive.training.company.employee</a> &gt; <span class="el_source">Schedule.java</span></div><h1>Schedule.java</h1><pre class="source lang-java linenums">package com.axonactive.training.company.employee;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+<span class="nc" id="L10">@Setter</span>
+public class Schedule {
+
+<span class="fc" id="L13">    private static Schedule instance = null;</span>
+
+<span class="fc" id="L15">    private ArrayList&lt;Match&gt; list;</span>
+
+<span class="fc" id="L17">    private Schedule() {</span>
+<span class="fc" id="L18">        list = new ArrayList&lt;Match&gt;();</span>
+<span class="fc" id="L19">    }</span>
+
+    public static Schedule getInstance() {
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        if (instance == null)</span>
+<span class="fc" id="L23">            instance = new Schedule();</span>
+
+<span class="fc" id="L25">        return instance;</span>
+    }
+
+    public void makeSchedule(ArrayList&lt;Team&gt; teamList) {
+<span class="fc" id="L29">        ArrayList&lt;Integer&gt; temp = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">        for (Team team : teamList) {</span>
+<span class="fc" id="L31">            temp.add(team.getId());</span>
+<span class="fc" id="L32">        }</span>
+<span class="fc" id="L33">        LocalDateTime time = LocalDateTime.of(2021, 5, 25, 8, 30, 00);</span>
+<span class="fc" id="L34">        int numberOfMatch = 0;</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        if (temp.size() % 2 == 1) {</span>
+            // Team dummy = new Team(temp.size() + 1, &quot;Null&quot;, temp.size() + 1);
+<span class="fc" id="L37">            Team dummy = new Team(4, &quot;Null&quot;, 4);</span>
+<span class="fc" id="L38">            teamList.add(dummy);</span>
+<span class="fc" id="L39">            temp.add(dummy.getId());</span>
+        }
+<span class="fc" id="L41">        int numberOfRound = temp.size() - 1;</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        for (int i = 0; i &lt; numberOfRound; i++) {</span>
+<span class="fc" id="L43">            int team = temp.get(1);</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">            for (int j = temp.size() - 1; j &gt; 0; j--) {</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">                if (j == temp.size() - 1) {</span>
+<span class="fc" id="L46">                    temp.set(1, temp.get(j));</span>
+                } else {
+<span class="fc" id="L48">                    temp.set(j + 1, temp.get(j));</span>
+                }
+            }
+<span class="fc" id="L51">            temp.set(2, team);</span>
+<span class="fc" id="L52">            numberOfMatch = makeOneRound(numberOfMatch, temp, time, teamList);</span>
+        }
+
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        for (Match match : list) {</span>
+<span class="fc" id="L56">            System.out.println(match.toString());</span>
+<span class="fc" id="L57">        }</span>
+<span class="fc" id="L58">    }</span>
+
+    public int makeOneRound(int numberOfMatch, ArrayList&lt;Integer&gt; temp, LocalDateTime time, ArrayList&lt;Team&gt; teamList) {
+
+<span class="fc" id="L62">        int mid = temp.size() / 2;</span>
+
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        for (int i = 0; i &lt; mid; i++) {</span>
+<span class="fc" id="L65">            Team t1 = teamList.get(temp.get(i) - 1);</span>
+<span class="fc" id="L66">            Team t2 = teamList.get(temp.get(temp.size() - i - 1) - 1);</span>
+<span class="fc" id="L67">            Match match = new Match(++numberOfMatch, &quot;Match &quot; + Integer.toString(numberOfMatch), time, 30, t1, 0, t2,</span>
+                    0);
+<span class="fc" id="L69">            list.add(match);</span>
+
+        }
+<span class="fc" id="L72">        return numberOfMatch;</span>
+
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
